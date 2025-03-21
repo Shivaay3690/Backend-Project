@@ -18,5 +18,11 @@ app.get('/' , (req , res) => {
 app.get("/create" , function(req , res){
     res.render("create")
 })
+app.post("/createhisaab" , function(req , res){
+    fs.writeFile(`./hisaab/${req.body.title}` , req.body.content, function(err){
+        if(err) return res.status(500).send(err);
+        res.redirect("/")
+    })
+})
  
 app.listen(3000)
